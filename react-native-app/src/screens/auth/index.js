@@ -5,6 +5,8 @@ import styles from './styles';
 import CustomLogo from '../../components/CustomLogo/CustomLogo';
 import SwitchSelector from 'react-native-switch-selector';
 import COLORS from '../../assets/constants/colors';
+import LoginForm from '../../components/LoginForm/LoginForm';
+import RegisterForm from '../../components/RegisterForm/RegisterForm';
 import {normalize} from '../../helperFunction';
 
 const AuthenticateScreen = () => {
@@ -47,6 +49,9 @@ const AuthenticateScreen = () => {
                         testID="gender-switch-selector"
                         accessibilityLabel="gender-switch-selector"
                     />
+
+                    {auth=='0' && (<LoginForm/>)}
+                    {auth=='1' && (<RegisterForm/>)}
                 </View>
                 <View style={styles.footer}>
                     <Image

@@ -9,7 +9,9 @@ const styles = StyleSheet.create({
         position: 'relative',
     },
     header: {
-        imageHeader: {},
+        imageHeader: {
+            width: "100%"
+        },
         logoHeader: {
             alignSelf: 'center',
             position: 'absolute',
@@ -24,7 +26,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         borderRadius: 30,
         backgroundColor: COLORS.WHITE,
-        elevation: 4,
+        elevation: 7,
         shadowColor: COLORS.BLACK,
         SwitchSelector: {
             marginTop: scaleY(58),
