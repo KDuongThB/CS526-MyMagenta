@@ -2,7 +2,7 @@ import React from 'react';
 import {Text, View, Image} from 'react-native';
 import styles from './styles';
 import COLORS from '../../assets/constants/colors';
-// import {scaleX, scaleY} from '../../helperFunction';
+import {normalize} from '../../helperFunction';
 import LinearGradient from 'react-native-linear-gradient';
 import SCREEN_NAME from '../../assets/constants/screens';
 import {useEffect, useRef} from 'react';
@@ -40,7 +40,7 @@ const OnBoardingScreen = props => {
                                 {
                                     fontWeight: 'bold',
                                     color: COLORS.WHITE,
-                                    fontSize: 16,
+                                    fontSize: normalize(16),
                                     fontFamily: 'Arial',
                                 })
                             }>
@@ -49,7 +49,7 @@ const OnBoardingScreen = props => {
                     </View>
                     <View style={styles.footer}>
                         <Image
-                            source={require('../../assets/images/FooterImage/FooteImage1x.png')}
+                            source={require('../../assets/images/FooterImage/FooterImage1-1x.png')}
                         />
                     </View>
                 </LinearGradient>
