@@ -2,10 +2,21 @@ import React from 'react';
 import {Text, View, Image} from 'react-native';
 import styles from './styles';
 import COLORS from '../../assets/constants/colors';
-import {scaleX, scaleY} from '../../helperFunction';
+// import {scaleX, scaleY} from '../../helperFunction';
 import LinearGradient from 'react-native-linear-gradient';
+import SCREEN_NAME from '../../assets/constants/screens';
+import {useEffect, useRef} from 'react';
 
-const OnBoardingScreen = () => {
+const OnBoardingScreen = props => {
+    const timerRef = useRef(null);
+    const {navigation} = props;
+    useEffect(() => {
+        timerRef.current = setTimeout(() => {
+            navigation.navigate(SCREEN_NAME.AUTHENTICATE_SCREEN);
+        }, 3000);
+
+        return () => clearTimeout(timerRef.current);
+    });
     return (
         <React.Fragment>
             <View style={styles.container}>
