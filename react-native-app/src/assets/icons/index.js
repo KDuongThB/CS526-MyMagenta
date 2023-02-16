@@ -7,3 +7,4 @@ export {default as ICSearch} from './Search';
 export {default as ICChevronRight} from './ChevronRight';
 export {default as ICChevronDown} from './ChevronDown';
 export {default as ICCalendar} from './Calendar';
+export {default as ICTrash} from './Trash';

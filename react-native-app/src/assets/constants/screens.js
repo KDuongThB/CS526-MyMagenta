@@ -9,6 +9,7 @@ const SCREEN_NAME = {
     PROCESS_SCREEN: 'ProcessScreen',
     ADD_PROCESS_SCREEN: 'AddProcessScreen',
     PRODUCT_INFORMATION_SCREEN: 'ProductInformationScreen',
+    PRODUCT_TO_ROUTINE:"AddProductToRoutine"
 };
 
 export default SCREEN_NAME;

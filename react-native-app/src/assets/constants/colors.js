@@ -10,5 +10,6 @@ const COLORS = {
     ZIRCON: '#EEF3FF',
     SCORPION: '#5A5A5A',
     AZURE_RADIANCE: '#0085FF',
+    PRIM: '#F0DBEC',
 };
 export default COLORS;

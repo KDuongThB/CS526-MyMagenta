@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
         title: {
             flexDirection: 'row',
             marginTop: scaleY(42),
-            height: scaleY(30),
+            height: scaleY(40),
             text: {
                 marginLeft: scaleX(30),
                 fontSize: normalize(24),

@@ -3,6 +3,7 @@ import {View, Text, TouchableOpacity, ScrollView} from 'react-native';
 import styles from './styles';
 import CustomButtonAdd from '../../components/CustomButtonAdd';
 import {ICSun, ICMoon} from '../../assets/icons';
+import SCREEN_NAME from '../../assets/constants/screens';
 
 const processes = [
     {
@@ -52,7 +53,11 @@ const recommendationProcess = [
     },
 ];
 
-const ProcessScreen = () => {
+const ProcessScreen = props => {
+    const onNavigateToAddProcess = () => {
+        props.navigation.navigate(SCREEN_NAME.ADD_PROCESS_SCREEN);
+    };
+
     return (
         <React.Fragment>
             <ScrollView style={styles.container}>
@@ -111,7 +116,10 @@ const ProcessScreen = () => {
                         })}
                     </View>
                     <View style={styles.activeProcess.button}>
-                        <CustomButtonAdd label="Thêm quy trình" />
+                        <CustomButtonAdd
+                            label="Thêm quy trình"
+                            onNavigate={onNavigateToAddProcess}
+                        />
                     </View>
                 </View>
                 <View style={styles.recommendProcess}>

@@ -19,7 +19,7 @@ const CustomButtonAdd = props => {
                         colors={[COLORS.CARDINAL, COLORS.CABARET]}
                         style={styles.linearGradient}>
                         <View style={styles.buttonHandle.container}>
-                            <ICPlus />
+                            <ICPlus color={COLORS.WHITE} />
                             <Text style={styles.buttonHandle.text}>
                                 {props.label}
                             </Text>

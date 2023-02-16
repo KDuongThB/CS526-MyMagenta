@@ -12,6 +12,7 @@ import MonitorScreen from '../screens/monitor';
 import ProcessScreen from '../screens/process';
 import AddProcessScreen from '../screens/addprocess';
 import ProductInformationScreen from '../screens/productinfo';
+import AddProductToRoutine from '../screens/addproduct_toroutine';
 
 const Stack = createNativeStackNavigator();
 
@@ -20,13 +21,8 @@ const RootNavigator = props => {
         <NavigationContainer>
             <Stack.Navigator>
                 <Stack.Screen
-                    name={SCREEN_NAME.SEARCH_PRODUCT_SCREEN}
-                    component={SearchProductScreen}
-                    options={{headerShown: false}}
-                />
-                <Stack.Screen
-                    name={SCREEN_NAME.PRODUCT_INFORMATION_SCREEN}
-                    component={ProductInformationScreen}
+                    name={SCREEN_NAME.PROCESS_SCREEN}
+                    component={ProcessScreen}
                     options={{headerShown: false}}
                 />
                 <Stack.Screen
@@ -35,13 +31,23 @@ const RootNavigator = props => {
                     options={{headerShown: false}}
                 />
                 <Stack.Screen
-                    name={SCREEN_NAME.PROCESS_SCREEN}
-                    component={ProcessScreen}
+                    name={SCREEN_NAME.MONITOR_SCREEN}
+                    component={MonitorScreen}
                     options={{headerShown: false}}
                 />
                 <Stack.Screen
-                    name={SCREEN_NAME.MONITOR_SCREEN}
-                    component={MonitorScreen}
+                    name={SCREEN_NAME.PRODUCT_TO_ROUTINE}
+                    component={AddProductToRoutine}
+                    options={{headerShown: false}}
+                />
+                <Stack.Screen
+                    name={SCREEN_NAME.PRODUCT_SCREEN}
+                    component={ProductScreen}
+                    options={{headerShown: false}}
+                />
+                <Stack.Screen
+                    name={SCREEN_NAME.PRODUCT_INFORMATION_SCREEN}
+                    component={ProductInformationScreen}
                     options={{headerShown: false}}
                 />
                 <Stack.Screen
@@ -65,15 +71,10 @@ const RootNavigator = props => {
                     options={{headerShown: false}}
                 />
                 <Stack.Screen
-                    name={SCREEN_NAME.PRODUCT_SCREEN}
-                    component={ProductScreen}
-                    options={{headerShown: false}}
-                />
-                {/* <Stack.Screen
                     name={SCREEN_NAME.SEARCH_PRODUCT_SCREEN}
                     component={SearchProductScreen}
                     options={{headerShown: false}}
-                /> */}
+                />
             </Stack.Navigator>
         </NavigationContainer>
     );
