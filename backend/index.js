@@ -44,7 +44,7 @@ app.use("/v1/stepType", stepTypeRoute);
 app.use("/v1/user", userRoute);
 
 app.listen(port, () => {
-    console.log("Server dang chay");
+    console.log("Up and running");
 })
 
 module.exports = app;
