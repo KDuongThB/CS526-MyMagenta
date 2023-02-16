@@ -1,0 +1,9 @@
+export {default as ICVisibleEye} from './VisibleEye';
+export {default as ICSun} from './Sun';
+export {default as ICMoon} from './Moon';
+export {default as ICPlus} from './Plus';
+export {default as ICBackNavigation} from './BackNavigation';
+export {default as ICSearch} from './Search';
+export {default as ICChevronRight} from './ChevronRight';
+export {default as ICChevronDown} from './ChevronDown';
+export {default as ICCalendar} from './Calendar';

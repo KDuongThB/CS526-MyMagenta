@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     },
     header: {
         imageHeader: {
-            width: "100%"
+            width: '100%',
         },
         logoHeader: {
             alignSelf: 'center',

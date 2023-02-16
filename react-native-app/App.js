@@ -7,10 +7,7 @@ import RootNavigator from './src/routes/RootNavigator.js';
 const App = () => {
     return (
         // <Provider store={Store}>
-        <SafeAreaView
-            style={{
-                flex: 1,
-            }}>
+        <SafeAreaView style={{flex: 1}}>
             <RootNavigator />
         </SafeAreaView>
         // </Provider>
