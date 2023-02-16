@@ -6,7 +6,7 @@ import CustomLogo from '../../components/CustomLogo/CustomLogo';
 import SwitchSelector from 'react-native-switch-selector';
 import COLORS from '../../assets/constants/colors';
 import LoginForm from '../../components/LoginForm';
-import RegisterForm from '../../components/RegisterForm'
+import RegisterForm from '../../components/RegisterForm';
 import {normalize} from '../../helperFunction';
 import SCREEN_NAME from '../../assets/constants/screens';
 

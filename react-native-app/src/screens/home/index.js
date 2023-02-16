@@ -1,13 +1,35 @@
 import React from 'react';
-import {Text, View, ScrollView, Image, TouchableOpacity} from 'react-native';
+import {
+    Text,
+    View,
+    ScrollView,
+    Image,
+    TouchableOpacity,
+    Modal,
+    Pressable,
+} from 'react-native';
 import styles from './styles';
 import CustomLightNightSelector from '../../components/LightNightSelector';
 import {useState} from 'react';
 import CustomButtonAdd from '../../components/CustomButtonAdd';
 import {ICCalendar, ICChevronDown} from '../../assets/icons';
-
+import {Calendar} from 'react-native-calendars';
 const HomeScreen = () => {
+    const [showModal, setShowModal] = useState(false);
     const [tab, setTab] = useState('Light');
+
+    const getCurrDate = () => {
+        const date = new Date();
+
+        let day = date.getDate();
+        let month = date.getMonth() + 1;
+        let year = date.getFullYear();
+
+        // This arrangement can be altered based on how we want the date's format to appear.
+        return `${year}-${month}-${day}`;
+    };
+
+    var currDate = getCurrDate();
     return (
         <React.Fragment>
             <View style={styles.container}>
@@ -50,7 +72,8 @@ const HomeScreen = () => {
                                         style={
                                             styles.header.selection.calendar
                                                 .info.date.button
-                                        }>
+                                        }
+                                        onPress={() => setShowModal(true)}>
                                         <ICChevronDown />
                                     </TouchableOpacity>
                                 </View>
@@ -94,6 +117,23 @@ const HomeScreen = () => {
                     </View>
                 </ScrollView>
             </View>
+            <Modal visible={showModal} animationType="fade" transparent={true}>
+                <Pressable
+                    style={styles.modal}
+                    onPress={() => setShowModal(false)}>
+                    <Calendar
+                        style={styles.modal.showCalendar}
+                        onDayPress={date => {
+                            console.log(date);
+                            setShowModal(false);
+                            console.log(getCurrDate());
+                        }}
+                        markedDates={{
+                            currDate: {marked: true, selected: true},
+                        }}
+                    />
+                </Pressable>
+            </Modal>
         </React.Fragment>
     );
 };

@@ -10,7 +10,7 @@ import {
     TouchableOpacity,
 } from 'react-native';
 import COLORS from '../../assets/constants/colors';
-import {ICVisibleEye} from '../../assets/icons'
+import {ICVisibleEye} from '../../assets/icons';
 import SCREEN_NAME from '../../assets/constants/screens';
 // import * as React from 'react';
 
@@ -45,7 +45,7 @@ const LoginForm = props => {
                             source={require('../../assets/images/RemoveEye.png')}
                         /> */}
                         <View>
-                        <ICVisibleEye/>
+                            <ICVisibleEye />
                         </View>
                     </TouchableOpacity>
                 </View>

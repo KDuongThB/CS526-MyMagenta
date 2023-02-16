@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
             width: 43,
             height: 43,
             borderRadius: 43 / 2,
-            marginLeft: -scaleX(20),
+            // marginLeft: -scaleX(20),
             // overflow: 'hidden',
         },
         avatarSpace: {

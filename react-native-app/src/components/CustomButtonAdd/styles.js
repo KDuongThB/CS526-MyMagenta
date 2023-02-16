@@ -5,7 +5,7 @@ import {normalize, scaleX, scaleY} from '../../helperFunction';
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        // height: scaleY(100),
     },
     linearGradient: {
         flexDirection: 'column',

@@ -8,5 +8,7 @@ const COLORS = {
     CABARET: '#D94F70',
     GRAY: '#888888',
     ZIRCON: '#EEF3FF',
+    SCORPION: '#5A5A5A',
+    AZURE_RADIANCE: '#0085FF',
 };
 export default COLORS;

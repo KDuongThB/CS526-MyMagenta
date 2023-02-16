@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-    Text,
-    View,
-    ScrollView,
-    Image,
-    TouchableOpacity,
-    TextInput,
-} from 'react-native';
+import {Text, View, Image, TouchableOpacity, TextInput} from 'react-native';
 import COLORS from '../../assets/constants/colors';
 import OnBack from '../../components/OnBack';
 import styles from './styles';
@@ -22,7 +15,10 @@ const ProfileScreen = props => {
                 </View>
                 <View style={styles.title}>
                     <View style={styles.title.titleIC}>
-                        <OnBack onBack={() => navigation.goBack()} />
+                        <OnBack
+                            onBack={() => navigation.goBack()}
+                            color={COLORS.CARDINAL}
+                        />
                     </View>
                     <Text style={styles.title.titleText_Space}>
                         <Text style={styles.title.titleText}>

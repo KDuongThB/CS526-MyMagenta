@@ -2,7 +2,8 @@ import {StyleSheet} from 'react-native';
 // import {Dimensions} from 'react-native';
 import COLORS from '../../assets/constants/colors.js';
 import {scaleX, scaleY, normalize} from '../../helperFunction.js';
-
+import {Dimensions} from 'react-native';
+const {width: SCREEN_WIDTH, height: SCREEN_HEIGHT} = Dimensions.get('window');
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -103,6 +104,15 @@ const styles = StyleSheet.create({
             height: scaleY(52),
             marginTop: scaleY(31),
             alignSelf: 'center',
+        },
+    },
+    modal: {
+        backgroundColor: 'rgba(0, 0, 0, 0.7)',
+        showCalendar: {
+            borderTopLeftRadius: 30,
+            borderTopRightRadius: 30,
+            elevation: 4,
+            marginTop: scaleY(SCREEN_HEIGHT - 302),
         },
     },
 });

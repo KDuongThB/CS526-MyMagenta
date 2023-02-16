@@ -1,5 +1,4 @@
 import {StyleSheet} from 'react-native';
-import {Colors} from 'react-native/Libraries/NewAppScreen';
 import COLORS from '../../assets/constants/colors.js';
 import {normalize, scaleX, scaleY} from '../../helperFunction.js';
 
@@ -48,6 +47,7 @@ const styles = StyleSheet.create({
         marginHorizontal: scaleX(38),
         borderRadius: normalize(15),
         marginTop: normalize(36),
+        marginBottom: normalize(20),
         paddingVertical: scaleY(19),
         text: {
             marginLeft: scaleX(16),
@@ -67,6 +67,30 @@ const styles = StyleSheet.create({
             justifyContent: 'center',
             alignItems: 'center',
             marginLeft: scaleX(70),
+        },
+    },
+    showProductData: {
+        marginHorizontal: scaleX(29),
+        flexDirection: 'column',
+        justifyContent: 'center',
+        borderBottomColor: COLORS.MERCURY,
+        borderBottomWidth: 2,
+        paddingVertical: scaleY(16),
+    },
+    body: {
+        flexDirection: 'row',
+        logo: {
+            backgroundColor: COLORS.WHITE,
+            borderRadius: 50,
+            width: scaleX(50),
+            height: scaleY(50),
+        },
+        name: {
+            textAlignVertical: 'center',
+            color: COLORS.BLACK,
+            maxWidth: scaleX(257),
+            fontSize: normalize(14),
+            marginLeft: scaleX(12.37),
         },
     },
 });

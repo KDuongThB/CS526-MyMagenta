@@ -12,20 +12,22 @@ const MonitorScreen = props => {
                 <View style={styles.header.title}>
                     <Text style={styles.header.title.text}>Theo dõi</Text>
                 </View>
+                <ScrollView style={styles.body}>
+                    <Image
+                        style={styles.body.imageEmpty}
+                        source={require('../../assets/images/MoniterSkinConditionEmpty/Moniter-Skin-Condition-Empty-1x.png')}
+                    />
+                    <Text style={styles.body.text1}>
+                        Không có dữ liệu theo dõi
+                    </Text>
+                    <Text style={styles.body.text2}>
+                        Hãy cập nhật tình trạng da để bắt đầu quá trình theo dõi
+                    </Text>
+                    <View style={styles.body.buttonAdd}>
+                        <CustomButtonAdd label="Thêm ảnh" />
+                    </View>
+                </ScrollView>
             </View>
-            <ScrollView style={styles.body}>
-                <Image
-                    style={styles.body.imageEmpty}
-                    source={require('../../assets/images/MoniterSkinConditionEmpty/Moniter-Skin-Condition-Empty-1x.png')}
-                />
-                <Text style={styles.body.text1}>Không có dữ liệu theo dõi</Text>
-                <Text style={styles.body.text2}>
-                    Hãy cập nhật tình trạng da để bắt đầu quá trình theo dõi
-                </Text>
-                <View style={styles.body.buttonAdd}>
-                    <CustomButtonAdd label="Thêm ảnh" />
-                </View>
-            </ScrollView>
         </React.Fragment>
     );
 };

@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
         marginTop: scaleY(10),
         loginSpace: {
             marginTop: scaleY(10),
-            borderBottomColor: COLORS.MECURY,
+            borderBottomColor: COLORS.MERCURY,
             borderBottomWidth: 1,
             flexDirection: 'row',
             justifyContent: 'space-between',

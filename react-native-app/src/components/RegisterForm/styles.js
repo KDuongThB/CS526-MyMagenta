@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
         height: scaleY(174),
         marginTop: scaleY(10),
         registerSpace: {
-            borderBottomColor: COLORS.MECURY,
+            borderBottomColor: COLORS.MERCURY,
             borderBottomWidth: 1,
             flexDirection: 'row',
             justifyContent: 'space-between',

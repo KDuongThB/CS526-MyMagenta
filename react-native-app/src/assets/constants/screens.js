@@ -6,6 +6,9 @@ const SCREEN_NAME = {
     SEARCH_PRODUCT_SCREEN: 'SearchProductScreen',
     PROFILE_SCREEN: 'ProfileScreen',
     MONITOR_SCREEN: 'MonitorScreen',
+    PROCESS_SCREEN: 'ProcessScreen',
+    ADD_PROCESS_SCREEN: 'AddProcessScreen',
+    PRODUCT_INFORMATION_SCREEN: 'ProductInformationScreen',
 };
 
 export default SCREEN_NAME;
