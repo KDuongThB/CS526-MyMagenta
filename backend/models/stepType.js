@@ -8,5 +8,5 @@ const stepTypeSchema = new Schema({
         unique: true
     }
 })
-
-module.exports = StepType = mongoose.model("StepType", stepTypeSchema);
+let StepType = mongoose.model("StepType", stepTypeSchema);
+module.exports = {StepType};

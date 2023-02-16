@@ -4,12 +4,12 @@ const Schema = mongoose.Schema;
 const chemicalSchema = new Schema({
     chemicalName: {
         type: String,
-        require: true
+        required: true
     },
     avoid: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Chemical"
     }]
 })
-
-module.exports = Chemical = mongoose.model("Chemical", chemicalSchema);
+let Chemical = mongoose.model("Chemical", chemicalSchema);
+module.exports = {Chemical};

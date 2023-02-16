@@ -24,5 +24,5 @@ const stepSchema = new Schema({
         type: Number
     }
 })
-
-module.exports = Step = mongoose.model("Step", stepSchema);
+let Step = mongoose.model("Step", stepSchema);
+module.exports = {Step};

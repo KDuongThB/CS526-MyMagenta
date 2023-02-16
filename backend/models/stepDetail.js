@@ -14,5 +14,5 @@ const stepDetailSchema = new Schema({
         require: true
     }
 })
-
-module.exports = StepDetail = mongoose.model("StepDetail", stepDetailSchema);
+let StepDetail = mongoose.model("StepDetail", stepDetailSchema);
+module.exports = {StepDetail};
