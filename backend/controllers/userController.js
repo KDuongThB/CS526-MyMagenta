@@ -25,7 +25,7 @@ const userController = {
 
     getUserByEmail: async (req, res) => {
         try {
-            const user = await User.findOne({ email: req.body.email });
+            const user = await User.findOne({ email: req.params.email });
             res.status(200).json(user);
         } catch (error) {
             res.status(500).json(error);
@@ -44,7 +44,7 @@ const userController = {
 
     deleteUserByEmail: async (req, res) => {
         try {
-            const user = await User.findByIdAndDelete(req.body.email);
+            const user = await User.findByIdAndDelete(req.params.email);
             res.status(200).json("Deleted");
         } catch (error) {
             res.status(500).json(error);
@@ -54,7 +54,7 @@ const userController = {
     changeInfo: async (req, res) => {
         try {
             // TODO
-            const userFound = await User.findOne({ userName: req.body.userName });
+            const userFound = await User.findOne({ userName: req.params.userName });
             if (userFound) {
                 await userFound.updateOne({ $set: req.body })
                 res.status(200).json("updated");
