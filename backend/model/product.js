@@ -9,7 +9,6 @@ const productSchema = new Schema({
   },
   age: {
     type: String,
-    require: true,
   },
   skin: {
     type: String,
@@ -18,7 +17,6 @@ const productSchema = new Schema({
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Chemical",
-      require: true,
     },
   ],
   uses: [
@@ -26,11 +24,10 @@ const productSchema = new Schema({
       type: String,
     },
   ],
-  instructions: [
+  instructions:
     {
       type: String,
     },
-  ],
   limit: [
     {
       type: Boolean,
@@ -39,11 +36,10 @@ const productSchema = new Schema({
   stepType: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "StepType",
-    require: true,
   },
   imageID: {
     type: String,
   },
 });
 let  Product = mongoose.model("Product", productSchema);
-module.exports = {Product}
+module.exports = {Product};

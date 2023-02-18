@@ -21,8 +21,8 @@ const stepSchema = new Schema({
         ref: "Product",
     },
     Order: {
-        type: Number
-    }
-})
+        type: Number,
+    },
+});
 let Step = mongoose.model("Step", stepSchema);
 module.exports = {Step};
