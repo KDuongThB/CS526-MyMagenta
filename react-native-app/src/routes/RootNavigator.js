@@ -159,6 +159,42 @@ const RootNavigator = props => {
                     component={SearchProductScreen}
                     options={{headerShown: false}}
                 />
+                <Stack.Screen
+                    name={SCREEN_NAME.PROCESS_SCREEN}
+                    component={ProcessScreen}
+                    options={{headerShown: false}}
+                />
+                <Stack.Screen
+                    name={SCREEN_NAME.ADD_PROCESS_SCREEN}
+                    component={AddProcessScreen}
+                    options={{headerShown: false}}
+                />
+                <Stack.Screen
+                    name={SCREEN_NAME.MONITOR_SCREEN}
+                    component={MonitorScreen}
+                    options={{headerShown: false}}
+                />
+                <Stack.Screen
+                    name={SCREEN_NAME.PRODUCT_TO_ROUTINE}
+                    component={AddProductToRoutine}
+                    options={{headerShown: false}}
+                />
+                <Stack.Screen
+                    name={SCREEN_NAME.PRODUCT_SCREEN}
+                    component={ProductScreen}
+                    options={{headerShown: false}}
+                />
+                <Stack.Screen
+                    name={SCREEN_NAME.PRODUCT_INFORMATION_SCREEN}
+                    component={ProductInformationScreen}
+                    options={{headerShown: false}}
+                />
+
+                <Stack.Screen
+                    name={SCREEN_NAME.PROFILE_SCREEN}
+                    component={ProfileScreen}
+                    options={{headerShown: false}}
+                /> 
             </Stack.Navigator>
         </NavigationContainer>
     );

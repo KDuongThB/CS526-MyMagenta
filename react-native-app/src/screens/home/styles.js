@@ -140,7 +140,7 @@ const styles = StyleSheet.create({
             fontWeight: '400',
             fontSize: normalize(12),
             lineHeight: normalize(13.8),
-            width: scaleY(335),
+            width: scaleY(260),
             // textTransform: 'uppercase',
         },
         checkbox: {

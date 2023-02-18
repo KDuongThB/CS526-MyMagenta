@@ -1,5 +1,5 @@
 import React from 'react';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import styles from './styles';
 import {
     View,
@@ -13,12 +13,37 @@ import COLORS from '../../assets/constants/colors';
 import {ICVisibleEye} from '../../assets/icons';
 import SCREEN_NAME from '../../assets/constants/screens';
 // import * as React from 'react';
+import axios from 'axios';
+import { set } from 'react-native-reanimated';
+import { useNavigation } from '@react-navigation/native';
+
+url = 'http://10.0.2.2:8000/v1/user/'
+truePass = ''
 
 const LoginForm = props => {
     const [account, setAccount] = useState('');
     const [password, setPassword] = useState('');
     const [passwordSecurity, setPasswordSecurity] = useState(true);
-    const {navigation} = props;
+    const [isOK, setIsOK] = useState(false);
+    // const {navigation} = props;
+    const navigation = useNavigation();
+    handleLogin = async () => {
+        try {
+            console.log("Hi")
+            const resp = await axios.get(url+'username/'+account, {}).then();
+            // console.log(JSON.stringify(resp.data.password))
+            truePass = resp.data.password;
+            console.log(truePass)
+            console.log(password)
+            if (truePass == password)
+            {
+                navigation.navigate(SCREEN_NAME.HOME_SCREEN);
+            }
+            else alert("Sai mật khẩu!")
+        } catch (error) {
+            console.log(error);
+        }
+    }
     return (
         <React.Fragment>
             <View style={styles.body}>
@@ -56,13 +81,15 @@ const LoginForm = props => {
             <View style={styles.footer}>
                 <TouchableOpacity
                     style={styles.footer.loginBtn}
-                    onPress={props.onNavigate}>
+                    onPress={handleLogin}>
                     <Text style={styles.footer.login_btnText}>Đăng nhập</Text>
                 </TouchableOpacity>
                 <Text style={styles.footer.hText}>Hoặc</Text>
                 <TouchableOpacity
                     style={styles.footer.another_loginSpace}
-                    onPress={props.onNavigate}>
+                    onPress={
+                        props.onNavigate
+                        }>
                     <Text style={styles.footer.another_loginText}>
                         Sử dụng mà không đăng nhập
                     </Text>
