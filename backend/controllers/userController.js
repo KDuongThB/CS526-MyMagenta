@@ -15,9 +15,10 @@ const userController = {
 
     getUserByUsername: async (req, res) => {
         try {
-            const user = await User.findOne({ userName: req.body.userName });
+            const user = await User.findOne({ userName: req.params.userName });
             res.status(200).json(user);
         } catch (error) {
+            console.log(error);
             res.status(500).json(error);
         }
     },
@@ -34,6 +35,7 @@ const userController = {
     getAllUser: async (req, res) => {
         try {
             const allUser = await User.find();
+            console.log("Here");
             res.status(200).json(allUser);
         } catch (error) {
             res.status(500).json(error);
