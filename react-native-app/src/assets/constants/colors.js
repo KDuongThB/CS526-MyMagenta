@@ -11,5 +11,6 @@ const COLORS = {
     SCORPION: '#5A5A5A',
     AZURE_RADIANCE: '#0085FF',
     PRIM: '#F0DBEC',
+    MINE_SHAFT:'#333333',
 };
 export default COLORS;
