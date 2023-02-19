@@ -1,5 +1,5 @@
 import React from 'react';
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import styles from './styles';
 import {
     View,
@@ -10,40 +10,48 @@ import {
     TouchableOpacity,
 } from 'react-native';
 import COLORS from '../../assets/constants/colors';
-import {ICVisibleEye} from '../../assets/icons';
+import { ICVisibleEye } from '../../assets/icons';
 import SCREEN_NAME from '../../assets/constants/screens';
 // import * as React from 'react';
 import axios from 'axios';
-import { set } from 'react-native-reanimated';
+import { acc, set } from 'react-native-reanimated';
 import { useNavigation } from '@react-navigation/native';
+// import {userName, password} from '../../assets/variables'
 
-url = 'http://10.0.2.2:8000/v1/user/'
-truePass = ''
+
+const url = 'https://mymagenta-dev.herokuapp.com/v1/user/'
+var truePass = ''
 
 const LoginForm = props => {
     const [account, setAccount] = useState('');
-    const [password, setPassword] = useState('');
+    const [pass, setPass] = useState('');
     const [passwordSecurity, setPasswordSecurity] = useState(true);
-    const [isOK, setIsOK] = useState(false);
-    // const {navigation} = props;
+    // const [loginFormData, setLoginFormData] = useState(initializeLoginFormData);
     const navigation = useNavigation();
+
     handleLogin = async () => {
         try {
-            console.log("Hi")
-            const resp = await axios.get(url+'username/'+account, {}).then();
+            const resp = await axios.get(url + 'username/' + account, {}).then();
             // console.log(JSON.stringify(resp.data.password))
             truePass = resp.data.password;
-            console.log(truePass)
-            console.log(password)
-            if (truePass == password)
-            {
+            if (truePass === pass) {
+                global.user = resp.data
+                global.isAccount = true
                 navigation.navigate(SCREEN_NAME.HOME_SCREEN);
             }
-            else alert("Sai mật khẩu!")
+            else
+                alert("Thông tin đăng nhập không chính xác")
         } catch (error) {
+            alert("Không tìm thấy tài khoản")
             console.log(error);
         }
     }
+
+    handleNotLogin = () => {
+        global.isAccount = false
+        navigation.navigate(SCREEN_NAME.HOME_SCREEN);
+    }
+
     return (
         <React.Fragment>
             <View style={styles.body}>
@@ -52,7 +60,7 @@ const LoginForm = props => {
                         style={styles.body.loginText}
                         placeholder="Tên người đăng nhập hoặc email"
                         placeholderTextColor={COLORS.NOBEL}
-                        onChangeText={account => setAccount(account)}
+                        onChangeText={(text) => { setAccount(text) }}
                     />
                 </View>
                 <View style={styles.body.loginSpace}>
@@ -61,7 +69,8 @@ const LoginForm = props => {
                         placeholder="Mật khẩu"
                         placeholderTextColor={COLORS.NOBEL}
                         secureTextEntry={passwordSecurity}
-                        onChangeText={password => setPassword(password)}
+                        onChangeText={(text) => { setPass(text) }}
+
                     />
                     <TouchableOpacity
                         onPress={() => setPasswordSecurity(!passwordSecurity)}>
@@ -87,9 +96,7 @@ const LoginForm = props => {
                 <Text style={styles.footer.hText}>Hoặc</Text>
                 <TouchableOpacity
                     style={styles.footer.another_loginSpace}
-                    onPress={
-                        props.onNavigate
-                        }>
+                    onPress={handleNotLogin}>
                     <Text style={styles.footer.another_loginText}>
                         Sử dụng mà không đăng nhập
                     </Text>

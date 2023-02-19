@@ -11,14 +11,14 @@ import {
 import styles from './styles';
 import OnBack from '../../components/OnBack';
 import COLORS from '../../assets/constants/colors';
-import {useState} from 'react';
-import {ICTrash} from '../../assets/icons';
-import {ICPlus} from '../../assets/icons';
+import { useState } from 'react';
+import { ICTrash } from '../../assets/icons';
+import { ICPlus } from '../../assets/icons';
 import CustomButtonAdd from '../../components/CustomButtonAdd';
 import Checkbox from 'expo-checkbox';
-import {normalize, scaleX, scaleY} from '../../helperFunction';
+import { normalize, scaleX, scaleY } from '../../helperFunction';
 
-const dataProcessBlocks = [
+const dataProcessBlocksLight = [
     {
         id: 0,
         title: 'Làm sạch',
@@ -31,6 +31,49 @@ const dataProcessBlocks = [
     },
     {
         id: 2,
+        title: 'Serum',
+        nameProcess: 'Thêm sản phẩm của bạn',
+    },
+    {
+        id: 3,
+        title: 'Dưỡng ẩm',
+        nameProcess: 'Thêm sản phẩm của bạn',
+    },
+    {
+        id: 4,
+        title: 'Chống nắng',
+        nameProcess: 'Thêm sản phẩm của bạn',
+    },
+];
+
+const dataProcessBlocksNight = [
+    {
+        id: 0,
+        title: 'Tẩy trang',
+        nameProcess: 'Thêm sản phẩm của bạn',
+    },
+    {
+        id: 1,
+        title: 'Làm sạch',
+        nameProcess: 'Thêm sản phẩm của bạn',
+    },
+    {
+        id: 2,
+        title: 'Toner',
+        nameProcess: 'Thêm sản phẩm của bạn',
+    },
+    {
+        id: 3,
+        title: 'Serum',
+        nameProcess: 'Thêm sản phẩm của bạn',
+    },
+    {
+        id: 4,
+        title: 'Điều trị',
+        nameProcess: 'Thêm sản phẩm của bạn',
+    },
+    {
+        id: 5,
         title: 'Dưỡng ẩm',
         nameProcess: 'Thêm sản phẩm của bạn',
     },
@@ -92,12 +135,12 @@ const dailyUse = [
     },
 ];
 
-const AddProcessScreen = props => {
-    const {navigation} = props;
 
-    const [nameProcess, setNameProcess] = useState('');
+const AddProcessScreen = ({ route, navigation }) => {
 
-    const [dataProcess, setDataProcess] = useState(dataProcessBlocks);
+    const { _id } = route.params;
+
+    const [nameProcess, setNameProcess] = useState(_id === 1 ? "Quy trình buổi sáng" : "Quy trình buổi tối");
 
     const [dateCheck, setDateCheck] = useState(dailyCheck);
 
@@ -108,7 +151,7 @@ const AddProcessScreen = props => {
     const handleChangeDate = id => {
         let temp = dateCheck.map(product => {
             if (id === product.id) {
-                return {...product, isChecked: !product.isChecked};
+                return { ...product, isChecked: !product.isChecked };
             }
             return product;
         });
@@ -146,13 +189,58 @@ const AddProcessScreen = props => {
                     <View style={styles.body.loginSpace}>
                         <TextInput
                             style={styles.body.loginSpace.loginText}
-                            placeholder="Tên quy trình"
-                            placeholderTextColor={COLORS.NOBEL}
+                            value={nameProcess}
+                            onChangeText={(text) => {setNameProcess(text)}}
                         />
                     </View>
                     <ScrollView style={styles.body.content}>
                         <View style={styles.body.block}>
-                            {dataProcess.map((pData, index) => {
+                            {_id === 1 && dataProcessBlocksLight.map((pData, index) => {
+                                return (
+                                    <View
+                                        style={styles.processBlock}
+                                        key={index}>
+                                        <Text style={styles.processBlock.title}>
+                                            {pData.title}
+                                        </Text>
+                                        <View
+                                            style={styles.processBlock.content}>
+                                            <TouchableOpacity
+                                                style={
+                                                    styles.processBlock.content
+                                                        .iconTrash
+                                                }>
+                                                <ICTrash />
+                                            </TouchableOpacity>
+                                            <TouchableOpacity
+                                                style={
+                                                    styles.processBlock.content
+                                                        .addProduct
+                                                }>
+                                                <View
+                                                    style={
+                                                        styles.processBlock
+                                                            .content.addProduct
+                                                            .plus
+                                                    }>
+                                                    <ICPlus
+                                                        color={COLORS.CARDINAL}
+                                                    />
+                                                </View>
+                                                <Text
+                                                    style={
+                                                        styles.processBlock
+                                                            .content.addProduct
+                                                            .name
+                                                    }>
+                                                    {pData.nameProcess}
+                                                </Text>
+                                            </TouchableOpacity>
+                                        </View>
+                                    </View>
+                                );
+                            })}
+                            {_id === 2 && dataProcessBlocksNight.map((pData, index) => {
                                 return (
                                     <View
                                         style={styles.processBlock}
