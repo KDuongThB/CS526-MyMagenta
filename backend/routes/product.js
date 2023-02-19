@@ -16,4 +16,6 @@ router.get("/id/:id", productController.getProductbyID);
 router.get("/name/:name", productController.getProductbyName);
 // Add chemical for product
 router.put("/add-chemical/id/:id", productController.addChemical);
+router.delete("/", productController.deleteAllProduct)
+router.get("/compare/", productController.checkTwoProduct)
 module.exports = router;

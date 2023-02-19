@@ -15,7 +15,7 @@ const userController = {
 
     getUserByUsername: async (req, res) => {
         try {
-            const user = await User.findOne({ userName: req.params.userName });
+            const user = await User.findOne({ userName: req.params.userName }).populate("storages");
             res.status(200).json(user);
         } catch (error) {
             console.log(error);
@@ -34,10 +34,11 @@ const userController = {
 
     getAllUser: async (req, res) => {
         try {
-            const allUser = await User.find().populate("storage");
+            const allUser = await User.find().populate("storages");
             console.log("Here");
             res.status(200).json(allUser);
         } catch (error) {
+            console.log(error)
             res.status(500).json(error);
         }
     },
@@ -70,7 +71,7 @@ const userController = {
     addProduct: async (req, res) => {
         try {
             const user = await User.findById(req.params.id);
-            await user.updateOne({$push: {storage: req.body.id}});
+            await user.updateOne({$push: {storages: req.body.id}});
             res.status(200).json("Added")
         } catch (error) {
             res.status(500).json(error)
@@ -79,7 +80,7 @@ const userController = {
     deleteProduct: async (req, res) => {
         try {
             const user = await User.findById(req.params.id);
-            await user.updateOne({$pull: {storage: req.body.id}});
+            await user.updateOne({$pull: {storages: req.body.id}});
             res.status(200).json("Deleted")
         } catch (error) {
             console.log(error)

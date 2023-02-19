@@ -123,6 +123,7 @@ const SearchProductScreen = props => {
                 </View>
                 <ScrollView style={styles.showProductContainer}>
                     {data.map((pData, index) => {
+                        console.log(pData.productName)
                         return (
                             <TouchableOpacity
                                 key={index}
@@ -138,7 +139,7 @@ const SearchProductScreen = props => {
                                 <View style={styles.body}>
                                     <Image
                                         style={styles.body.logo}
-                                        source={"../../assets/images/Product/product_" + pData['_id'] + ".png"}
+                                        source={{uri: pData.imageID}}
                                     />
                                     <Text style={styles.body.name}>
                                         {pData.productName}

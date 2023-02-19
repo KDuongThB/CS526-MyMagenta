@@ -69,7 +69,7 @@ const AppNavigator = () => {
             />}
             <Drawer.Screen
                 name="Sản phẩm"
-                component={ProductScreen}
+                component={SearchProductScreen}
                 options={{
                     drawerIcon: ({ color }) => <ICListBoxes color={color} />,
                 }}

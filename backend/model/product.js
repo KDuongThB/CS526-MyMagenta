@@ -15,8 +15,7 @@ const productSchema = new Schema({
   },
   chemicals: [
     {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Chemical",
+      type: String,
     },
   ],
   uses: [
@@ -34,7 +33,7 @@ const productSchema = new Schema({
     },
   ],
   stepType: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: String,
     ref: "StepType",
   },
   imageID: {

@@ -24,10 +24,6 @@ const userSchema = new Schema({
         type: Number,
         // require: true
     },
-    storage: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Product",
-    }],
     storages: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Product",

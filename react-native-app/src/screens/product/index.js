@@ -1,10 +1,10 @@
 import React from 'react';
 import styles from './styles';
-import {View, Text, ScrollView, Image, TouchableOpacity} from 'react-native';
+import { View, Text, ScrollView, Image, TouchableOpacity } from 'react-native';
 import CustomButtonAdd from '../../components/CustomButtonAdd';
-import {useState} from 'react';
+import { useState } from 'react';
 import SCREEN_NAME from '../../assets/constants/screens';
-
+import axios from 'axios';
 var productData = [
     {
         id: 0,
@@ -32,16 +32,17 @@ var productData = [
     },
 ];
 
-const ProductScreen = props => {
-    const [data, setData] = useState(productData);
-
+const ProductScreen = ({ route, navigation }) => {
+    const { stepType } = route.params;
+    const [data, setData] = useState(global.user.storages.filter(value => value.stepType === stepType));
+    console.log(data);
     const handleData = id => {
-        productData = productData.filter(item => item.id !== id);
+        productData = global.user.storages.filter(value => value.stepType == stepType).filter(item => item.id !== id);
         setData(productData);
     };
 
     const onNavigateToSearchProduct = () => {
-        props.navigation.navigate(SCREEN_NAME.SEARCH_PRODUCT_SCREEN);
+        navigation.navigate(SCREEN_NAME.SEARCH_PRODUCT_SCREEN);
     };
 
     return (
@@ -64,11 +65,60 @@ const ProductScreen = props => {
                     </Text>
                 </View>
                 <ScrollView style={styles.productContainer}>
-                    {productData.map((pData, index) => {
+                    {data.map((pData, index) => {
                         return (
-                            <View
+                            <TouchableOpacity
                                 style={styles.productContainer.item}
-                                key={index}>
+                                key={index}
+                                onPress={() => {
+                                    console.log("Hellooo")
+                                    if (global.parts === "Buổi sáng") {
+                                        global.dataProcessBlocksLight.forEach((item, i) => {
+                                            if (item.title === pData.stepType) {
+                                                global.dataProcessBlocksLight[i] = {
+                                                    ...global.dataProcessBlocksLight[i],
+                                                    id: pData._id,
+                                                    nameProcess: pData.productName,
+                                                    image: pData.imageID,
+                                                }
+                                                list_product = []
+                                                // for (let index = 0; index < global.dataProcessBlocksLight.length - 1; index++) {
+                                                //     for (let _index = index + 1; _index < global.dataProcessBlocksLight.length; _index++) {
+                                                //         if (global.dataProcessBlocksLight[index].id.toString().length > 1 && global.dataProcessBlocksLight[_index].id.toString().length > 1) {
+                                                //             const data = {
+                                                //                 productA: global.dataProcessBlocksLight[index].id,
+                                                //                 productB: global.dataProcessBlocksLight[_index].id
+                                                //             };
+                                                //             console.log(global.dataProcessBlocksLight[index].id)
+                                                //             console.log(global.dataProcessBlocksLight[_index].id)
+                                                //             axios.get('http://10.0.2.2:8000/v1/product/compare/', data)
+                                                //             .then(response => {
+                                                //                 console.log(response);
+                                                //             })
+                                                //             .catch(error => {
+                                                //                 console.error(error);
+                                                //             });
+                                                                
+                                                //         }
+                                                //     }
+                                                // }
+                                            }
+                                        })
+                                    } else {
+                                        global.dataProcessBlocksNight.forEach((item, i) => {
+                                            if (item.title === pData.stepType) {
+                                                global.dataProcessBlocksNight[i] = {
+                                                    ...global.dataProcessBlocksNight[i],
+                                                    id: pData._id,
+                                                    nameProcess: pData.productName,
+                                                    image: pData.imageID,
+                                                }
+                                            }
+                                        })
+                                    }
+                                    console.log(global.dataProcessBlocksNight);
+                                    navigation.navigate(SCREEN_NAME.ADD_PROCESS_SCREEN)
+                                }}>
                                 <View
                                     style={
                                         styles.productContainer.item.product
@@ -78,7 +128,7 @@ const ProductScreen = props => {
                                             styles.productContainer.item.product
                                                 .logo
                                         }
-                                        source={require('../../assets/images/Product/La-Roche-Posay-Hyalu-B5-Serum.png')}
+                                        source={{ uri: pData.imageID }}
                                     />
                                     <View
                                         style={
@@ -90,7 +140,7 @@ const ProductScreen = props => {
                                                 styles.productContainer.item
                                                     .product.name.text
                                             }>
-                                            {pData.name}
+                                            {pData.productName}
                                         </Text>
                                         <View
                                             style={
@@ -109,7 +159,7 @@ const ProductScreen = props => {
                                                             .item.product.name
                                                             .buttons.button.text
                                                     }>
-                                                    Da dầu
+                                                    {pData.skin}
                                                 </Text>
                                             </TouchableOpacity>
                                             <TouchableOpacity
@@ -124,7 +174,7 @@ const ProductScreen = props => {
                                                             .item.product.name
                                                             .buttons.button.text
                                                     }>
-                                                    Rửa mặt
+                                                    {pData.stepType}
                                                 </Text>
                                             </TouchableOpacity>
                                         </View>
@@ -144,7 +194,7 @@ const ProductScreen = props => {
                                         Xóa sản phẩm
                                     </Text>
                                 </TouchableOpacity>
-                            </View>
+                            </TouchableOpacity>
                         );
                     })}
                 </ScrollView>

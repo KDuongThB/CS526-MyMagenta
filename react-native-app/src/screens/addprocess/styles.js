@@ -110,9 +110,14 @@ const styles = StyleSheet.create({
                     justifyContent: 'center',
                     alignItems: 'center',
                 },
+                productImage: {
+                    width: "100%",
+                    height: "100%",
+                },
                 name: {
                     color: COLORS.BLACK,
                     marginLeft: scaleX(16),
+                    maxWidth: scaleX(200),
                 },
             },
         },

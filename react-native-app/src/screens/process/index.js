@@ -55,9 +55,11 @@ const recommendationProcess = [
 
 const ProcessScreen = props => {
     const onNavigateToAddProcess = (id) => {
-        props.navigation.navigate(SCREEN_NAME.ADD_PROCESS_SCREEN, {
-            _id: id
-        });
+        if (id === 1) {
+            global.parts = "Buổi sáng"
+        } else 
+            global.parts = "Buổi tối"
+        props.navigation.navigate(SCREEN_NAME.ADD_PROCESS_SCREEN);
     };
 
     return (

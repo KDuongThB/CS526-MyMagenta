@@ -14,7 +14,7 @@ const chemicalController = {
 
     getAllChemical: async (req, res) => {
         try {
-            const chemical = await Chemical.find().populate();
+            const chemical = await Chemical.find().populate("avoid");
             res.status(200).json(chemical);
         } catch (error) {
             res.status(500).json({ error: "Something went wrong." });
@@ -51,11 +51,22 @@ const chemicalController = {
     // Chưa xong
     addAvoid: async (req, res) => {
         try {
-            const chemical = Chemical.findById(req.params.id);
-            await chemical.updateOne({$set: {avoid: req.body.chemical}});
-            res.status(200).json(chemical);
+            const chemical1 = await Chemical.findOne({chemicalName: req.body.chemical1})
+            const chemical2 = await Chemical.findOne({chemicalName: req.body.chemical2})
+            await chemical1.updateOne({$push: {avoid: chemical2._id}})
+            await chemical2.updateOne({$push: {avoid: chemical1._id}})
+            res.status(200).json("Added");
         } catch (error) {
+            console.log(error)
             res.status(500).json({ error: "Something went wrong." });
+        }
+    },
+    deleteAllChemical: async (req, res) => {
+        try {
+            await Chemical.deleteMany()
+            res.status(200).json("Delete successful")
+        } catch (error) {
+            res.status(500).json(error)
         }
     }
 };

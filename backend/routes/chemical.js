@@ -12,7 +12,9 @@ router.put("/id/:id", chemicalController.updateChemical);
 router.get("/id/:id", chemicalController.getAChemical);
 // Get name chemical return id
 router.get("/name/:name", chemicalController.getChemicalbyName);
-
 // add avoid
-router.put("/add-avoid/name/:name", chemicalController.addAvoid)
+router.put("/add-avoid", chemicalController.addAvoid);
+// delete all 
+router.delete("/", chemicalController.deleteAllChemical);
+
 module.exports = router;
