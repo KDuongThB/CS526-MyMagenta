@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
     body: {
         flexDirection: 'row',
         logo: {
-            // backgroundColor: COLORS.WHITE,
+            backgroundColor: COLORS.WHITE,
             borderRadius: 50,
             width: scaleX(50),
             height: scaleY(50),

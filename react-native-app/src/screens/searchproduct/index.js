@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useEffect } from 'react';
+import React, {useState} from 'react';
+import {useEffect} from 'react';
 import {
     View,
     Text,
@@ -10,73 +10,52 @@ import {
 } from 'react-native';
 import styles from './styles';
 import OnBack from '../../components/OnBack';
-import { ICSearch, ICChevronRight } from '../../assets/icons';
+import {ICSearch, ICChevronRight} from '../../assets/icons';
 import COLORS from '../../assets/constants/colors';
-import axios from 'axios';
+import SCREEN_NAME from '../../assets/constants/screens';
 
-
-// const productData = [
-//     {
-//         id: 0,
-//         name: 'La Roche-Posay Effaclar Purifying Foaming Gel For Oily Sensitive Skin',
-//     },
-//     {
-//         id: 1,
-//         name: 'La Roche-Posay Effaclar Duo+',
-//     },
-//     {
-//         id: 2,
-//         name: 'La Roche-Posay Anthelios XL Dry Touch Gel-Cream SPF 50+ UVB & UVA',
-//     },
-//     {
-//         id: 3,
-//         name: 'La Roche-Posay Hyalu B5 Serum',
-//     },
-//     {
-//         id: 4,
-//         name: 'La Roche-Posay Effaclar Pure Vitamin C10 Serum ',
-//     },
-// ];
-
-// const url = 'http://10.0.2.2:8000/v1/product/'
-const url = 'https://mymagenta-dev.herokuapp.com/v1/product'
+const productData = [
+    {
+        id: 0,
+        name: 'La Roche-Posay Effaclar Purifying Foaming Gel For Oily Sensitive Skin',
+    },
+    {
+        id: 1,
+        name: 'La Roche-Posay Effaclar Duo+',
+    },
+    {
+        id: 2,
+        name: 'La Roche-Posay Anthelios XL Dry Touch Gel-Cream SPF 50+ UVB & UVA',
+    },
+    {
+        id: 3,
+        name: 'La Roche-Posay Hyalu B5 Serum',
+    },
+    {
+        id: 4,
+        name: 'La Roche-Posay Effaclar Pure Vitamin C10 Serum ',
+    },
+];
 
 const SearchProductScreen = props => {
-    const [data, setData] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
-    const { navigation } = props;
-    // productData = []
-    handleLoadData = async () => {
-        try {
-            const resp = await axios.get(url, {}).then();
-            var temp = resp.data.filter(pData =>
-                pData.productName.toLowerCase().includes(searchTerm.toLowerCase()),
-            );
-            setData(temp);
-            // setData(resp.data)
-        } catch (error) {
-            alert("Không tìm thấy sản phẩm")
-            console.log(error);
-        }
-    }
+    const [data, setData] = useState(productData);
+    const {navigation} = props;
 
     useEffect(() => {
-        // const intervalID = setInterval(() => {
-        //     if (searchTerm === '') {
-        //         setData(productData);
-        //     } else {
-        //         const temp = productData.filter(pData =>
-        //             pData.name.toLowerCase().includes(searchTerm.toLowerCase()),
-        //         );
-        //         setData(temp);
-        //     }
-        // }, 100);
+        const intervalID = setInterval(() => {
+            if (searchTerm === '') {
+                setData(productData);
+            } else {
+                const temp = productData.filter(pData =>
+                    pData.name.toLowerCase().includes(searchTerm.toLowerCase()),
+                );
+                setData(temp);
+            }
+        }, 100);
 
-        // return () => clearInterval(intervalID);
-        handleLoadData();
+        return () => clearInterval(intervalID);
     }, [searchTerm]);
-
-    const product = handleLoadData
 
     return (
         <React.Fragment>
@@ -105,7 +84,7 @@ const SearchProductScreen = props => {
                         onChangeText={text => {
                             setSearchTerm(text);
                         }}
-                    // showSoftInputOnFocus={false}
+                        // showSoftInputOnFocus={false}
                     />
                 </View>
                 <View style={styles.noItemContainer}>
@@ -122,32 +101,32 @@ const SearchProductScreen = props => {
                     </TouchableOpacity>
                 </View>
                 <ScrollView style={styles.showProductContainer}>
-                    {data.map((pData, index) => {
-                        console.log(pData.productName)
-                        return (
-                            <TouchableOpacity
-                                key={index}
-                                style={styles.showProductData}
-                                onPress={() =>
-                                    navigation.navigate(
-                                        SCREEN_NAME.PRODUCT_INFORMATION_SCREEN,
-                                        {
-                                            itemId: pData._id,
-                                        },
-                                    )
-                                }>
-                                <View style={styles.body}>
-                                    <Image
-                                        style={styles.body.logo}
-                                        source={{uri: pData.imageID}}
-                                    />
-                                    <Text style={styles.body.name}>
-                                        {pData.productName}
-                                    </Text>
-                                </View>
-                            </TouchableOpacity>
-                        );
-                    })}
+                    {searchTerm !== '' &&
+                        data.map((pData, index) => {
+                            return (
+                                <TouchableOpacity
+                                    key={index}
+                                    style={styles.showProductData}
+                                    onPress={() =>
+                                        navigation.navigate(
+                                            SCREEN_NAME.PRODUCT_INFORMATION_SCREEN,
+                                            {
+                                                itemId: pData.id,
+                                            },
+                                        )
+                                    }>
+                                    <View style={styles.body}>
+                                        <Image
+                                            style={styles.body.logo}
+                                            source={require('../../assets/images/Product/La-Roche-Posay-Hyalu-B5-Serum.png')}
+                                        />
+                                        <Text style={styles.body.name}>
+                                            {pData.name}
+                                        </Text>
+                                    </View>
+                                </TouchableOpacity>
+                            );
+                        })}
                 </ScrollView>
             </View>
         </React.Fragment>

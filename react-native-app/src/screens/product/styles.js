@@ -65,11 +65,10 @@ const styles = StyleSheet.create({
                         button: {
                             backgroundColor: COLORS.CARDINAL,
                             borderRadius: 30,
-                            width: scaleY(84),
+                            width: scaleY(74),
                             height: scaleX(20),
                             justifyContent: 'center',
                             alignItems: 'center',
-                            marginRight: scaleY(10),
                             text: {
                                 color: COLORS.WHITE,
                                 fontSize: normalize(12),

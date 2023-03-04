@@ -6,34 +6,34 @@ import {ICSun, ICMoon} from '../../assets/icons';
 import SCREEN_NAME from '../../assets/constants/screens';
 
 const processes = [
-    // {
-    //     id: 1,
-    //     name: 'Quy trình trị mụn',
-    //     parts: 'Bất kì',
-    //     day: 'Mỗi ngày',
-    //     step: '5',
-    // },
-    // {
-    //     id: 2,
-    //     name: 'Quy trình lọc mụn',
-    //     parts: 'Buổi sáng',
-    //     day: 'Mỗi ngày',
-    //     step: '4',
-    // },
-    // {
-    //     id: 2,
-    //     name: 'Quy trình lọc mụn',
-    //     parts: 'Buổi sáng',
-    //     day: 'Mỗi ngày',
-    //     step: '4',
-    // },
-    // {
-    //     id: 2,
-    //     name: 'Quy trình lọc mụn',
-    //     parts: 'Buổi sáng',
-    //     day: 'Mỗi ngày',
-    //     step: '4',
-    // },
+    {
+        id: 1,
+        name: 'Quy trình trị mụn',
+        parts: 'Bất kì',
+        day: 'Mỗi ngày',
+        step: '5',
+    },
+    {
+        id: 2,
+        name: 'Quy trình lọc mụn',
+        parts: 'Buổi sáng',
+        day: 'Mỗi ngày',
+        step: '4',
+    },
+    {
+        id: 2,
+        name: 'Quy trình lọc mụn',
+        parts: 'Buổi sáng',
+        day: 'Mỗi ngày',
+        step: '4',
+    },
+    {
+        id: 2,
+        name: 'Quy trình lọc mụn',
+        parts: 'Buổi sáng',
+        day: 'Mỗi ngày',
+        step: '4',
+    },
 ];
 
 const recommendationProcess = [
@@ -54,11 +54,7 @@ const recommendationProcess = [
 ];
 
 const ProcessScreen = props => {
-    const onNavigateToAddProcess = (id) => {
-        if (id === 1) {
-            global.parts = "Buổi sáng"
-        } else 
-            global.parts = "Buổi tối"
+    const onNavigateToAddProcess = () => {
         props.navigation.navigate(SCREEN_NAME.ADD_PROCESS_SCREEN);
     };
 
@@ -71,7 +67,7 @@ const ProcessScreen = props => {
                         <Text style={styles.header.title.text}>Quy trình</Text>
                     </View>
                 </View>
-                {/* <View style={styles.activeProcess}>
+                <View style={styles.activeProcess}>
                     <View style={styles.activeProcess.title}>
                         <Text style={styles.activeProcess.title.text}>
                             Quy trình đang hoạt động
@@ -125,7 +121,7 @@ const ProcessScreen = props => {
                             onNavigate={onNavigateToAddProcess}
                         />
                     </View>
-                </View> */}
+                </View>
                 <View style={styles.recommendProcess}>
                     <View style={styles.activeProcess.title}>
                         <Text style={styles.activeProcess.title.text}>
@@ -137,9 +133,7 @@ const ProcessScreen = props => {
                             return (
                                 <TouchableOpacity
                                     key={index}
-                                    style={styles.activeProcess.body.items}
-                                    onPress={() => onNavigateToAddProcess(process.id)}
-                                    >
+                                    style={styles.activeProcess.body.items}>
                                     <View
                                         style={
                                             styles.activeProcess.body.items

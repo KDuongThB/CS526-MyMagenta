@@ -7,18 +7,34 @@ import {
     TextInput,
     Modal,
     Pressable,
-    Image
 } from 'react-native';
 import styles from './styles';
 import OnBack from '../../components/OnBack';
 import COLORS from '../../assets/constants/colors';
-import { useState } from 'react';
-import { ICTrash } from '../../assets/icons';
-import { ICPlus } from '../../assets/icons';
+import {useState} from 'react';
+import {ICTrash} from '../../assets/icons';
+import {ICPlus} from '../../assets/icons';
 import CustomButtonAdd from '../../components/CustomButtonAdd';
 import Checkbox from 'expo-checkbox';
-import { normalize, scaleX, scaleY } from '../../helperFunction';
-import SCREEN_NAME from '../../assets/constants/screens';
+import {normalize, scaleX, scaleY} from '../../helperFunction';
+
+const dataProcessBlocks = [
+    {
+        id: 0,
+        title: 'Làm sạch',
+        nameProcess: 'Thêm sản phẩm của bạn',
+    },
+    {
+        id: 1,
+        title: 'Toner',
+        nameProcess: 'Thêm sản phẩm của bạn',
+    },
+    {
+        id: 2,
+        title: 'Dưỡng ẩm',
+        nameProcess: 'Thêm sản phẩm của bạn',
+    },
+];
 
 const dailyCheck = [
     {
@@ -76,10 +92,12 @@ const dailyUse = [
     },
 ];
 
+const AddProcessScreen = props => {
+    const {navigation} = props;
 
-const AddProcessScreen = ({ navigation }) => {
+    const [nameProcess, setNameProcess] = useState('');
 
-    const [nameProcess, setNameProcess] = useState(global.parts === "Buổi sáng" ? "Quy trình buổi sáng" : "Quy trình buổi tối");
+    const [dataProcess, setDataProcess] = useState(dataProcessBlocks);
 
     const [dateCheck, setDateCheck] = useState(dailyCheck);
 
@@ -90,7 +108,7 @@ const AddProcessScreen = ({ navigation }) => {
     const handleChangeDate = id => {
         let temp = dateCheck.map(product => {
             if (id === product.id) {
-                return { ...product, isChecked: !product.isChecked };
+                return {...product, isChecked: !product.isChecked};
             }
             return product;
         });
@@ -128,13 +146,13 @@ const AddProcessScreen = ({ navigation }) => {
                     <View style={styles.body.loginSpace}>
                         <TextInput
                             style={styles.body.loginSpace.loginText}
-                            value={nameProcess}
-                            onChangeText={(text) => { setNameProcess(text) }}
+                            placeholder="Tên quy trình"
+                            placeholderTextColor={COLORS.NOBEL}
                         />
                     </View>
                     <ScrollView style={styles.body.content}>
                         <View style={styles.body.block}>
-                            {global.parts === "Buổi sáng" && global.dataProcessBlocksLight.map((pData, index) => {
+                            {dataProcess.map((pData, index) => {
                                 return (
                                     <View
                                         style={styles.processBlock}
@@ -148,108 +166,23 @@ const AddProcessScreen = ({ navigation }) => {
                                                 style={
                                                     styles.processBlock.content
                                                         .iconTrash
-                                                }
-                                                onPress={() => {
-                                                    navigation.navigate(SCREEN_NAME.PRODUCT_SCREEN, {
-                                                        stepType: pData.title
-                                                    })
-                                                }}
-                                            >
+                                                }>
                                                 <ICTrash />
                                             </TouchableOpacity>
                                             <TouchableOpacity
                                                 style={
                                                     styles.processBlock.content
                                                         .addProduct
-                                                }
-                                                onPress={() => {
-                                                    navigation.navigate(SCREEN_NAME.PRODUCT_SCREEN, {
-                                                        stepType: pData.title
-                                                    })
-                                                }}>
+                                                }>
                                                 <View
                                                     style={
                                                         styles.processBlock
                                                             .content.addProduct
                                                             .plus
                                                     }>
-                                                    {pData.image === "" && <ICPlus
+                                                    <ICPlus
                                                         color={COLORS.CARDINAL}
-                                                    />}
-                                                    {pData.image !== "" && <Image
-                                                        style={
-                                                            styles.processBlock
-                                                                .content.addProduct
-                                                                .productImage
-                                                        }
-                                                        source={{ uri: pData.image }}
-                                                        resizeMode="cover"
-                                                    />}
-                                                </View>
-                                                <Text
-                                                    style={
-                                                        styles.processBlock
-                                                            .content.addProduct
-                                                            .name
-                                                    }>
-                                                    {pData.nameProcess}
-                                                </Text>
-                                            </TouchableOpacity>
-                                        </View>
-                                    </View>
-                                );
-                            })}
-                            {global.parts === "Buổi tối" && global.dataProcessBlocksNight.map((pData, index) => {
-                                return (
-                                    <View
-                                        style={styles.processBlock}
-                                        key={index}>
-                                        <Text style={styles.processBlock.title}>
-                                            {pData.title}
-                                        </Text>
-                                        <View
-                                            style={styles.processBlock.content}>
-                                            <TouchableOpacity
-                                                style={
-                                                    styles.processBlock.content
-                                                        .iconTrash
-                                                }
-                                                onPress={() => {
-                                                    navigation.navigate(SCREEN_NAME.PRODUCT_SCREEN, {
-                                                        stepType: pData.title
-                                                    })
-                                                }}
-                                            >
-                                                <ICTrash />
-                                            </TouchableOpacity>
-                                            <TouchableOpacity
-                                                style={
-                                                    styles.processBlock.content
-                                                        .addProduct
-                                                }
-                                                onPress={() => {
-                                                    navigation.navigate(SCREEN_NAME.PRODUCT_SCREEN, {
-                                                        stepType: pData.title
-                                                    })
-                                                }}>
-                                                <View
-                                                    style={
-                                                        styles.processBlock
-                                                            .content.addProduct
-                                                            .plus
-                                                    }>
-                                                    {pData.image === "" && <ICPlus
-                                                        color={COLORS.CARDINAL}
-                                                    />}
-                                                    {pData.image !== "" && <Image
-                                                        style={
-                                                            styles.processBlock
-                                                                .content.addProduct
-                                                                .productImage
-                                                        }
-                                                        source={{ uri: pData.image }}
-                                                        resizeMode="cover"
-                                                    />}
+                                                    />
                                                 </View>
                                                 <Text
                                                     style={

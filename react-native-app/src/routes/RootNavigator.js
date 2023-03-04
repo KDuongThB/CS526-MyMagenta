@@ -1,6 +1,6 @@
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import SCREEN_NAME from '../assets/constants/screens';
 import OnBoardingScreen from '../screens/onboarding';
 import AuthenticateScreen from '../screens/auth';
@@ -13,9 +13,9 @@ import ProcessScreen from '../screens/process';
 import AddProcessScreen from '../screens/addprocess';
 import ProductInformationScreen from '../screens/productinfo';
 import AddProductToRoutine from '../screens/addproduct_toroutine';
-import { createDrawerNavigator } from '@react-navigation/drawer';
+import {createDrawerNavigator} from '@react-navigation/drawer';
 import COLORS from '../assets/constants/colors';
-import { normalize, scaleX, scaleY } from '../helperFunction';
+import {normalize, scaleX, scaleY} from '../helperFunction';
 import CustomDrawer from '../components/CustomDrawer';
 import {
     ICHome,
@@ -57,35 +57,35 @@ const AppNavigator = () => {
                 name="Trang chủ"
                 component={HomeScreen}
                 options={{
-                    drawerIcon: ({ color }) => <ICHome color={color} />,
+                    drawerIcon: ({color}) => <ICHome color={color} />,
                 }}
             />
-            {global.isAccount && <Drawer.Screen
+            <Drawer.Screen
                 name="Hồ sơ"
                 component={ProfileScreen}
                 options={{
-                    drawerIcon: ({ color }) => <ICProfile color={color} />,
+                    drawerIcon: ({color}) => <ICProfile color={color} />,
                 }}
-            />}
+            />
             <Drawer.Screen
                 name="Sản phẩm"
-                component={SearchProductScreen}
+                component={ProductScreen}
                 options={{
-                    drawerIcon: ({ color }) => <ICListBoxes color={color} />,
+                    drawerIcon: ({color}) => <ICListBoxes color={color} />,
                 }}
             />
             <Drawer.Screen
                 name="Theo dõi"
                 component={MonitorScreen}
                 options={{
-                    drawerIcon: ({ color }) => <ICPersonCircle color={color} />,
+                    drawerIcon: ({color}) => <ICPersonCircle color={color} />,
                 }}
             />
             <Drawer.Screen
                 name="Quy trình"
                 component={ProcessScreen}
                 options={{
-                    drawerIcon: ({ color }) => <ICProcess color={color} />,
+                    drawerIcon: ({color}) => <ICProcess color={color} />,
                 }}
             />
             {/* <Drawer.Screen
@@ -142,59 +142,59 @@ const RootNavigator = props => {
                 <Stack.Screen
                     name={SCREEN_NAME.ONBOARDING_SCREEN}
                     component={OnBoardingScreen}
-                    options={{ headerShown: false }}
+                    options={{headerShown: false}}
                 />
                 <Stack.Screen
                     name={SCREEN_NAME.AUTHENTICATE_SCREEN}
                     component={AuthenticateScreen}
-                    options={{ headerShown: false }}
+                    options={{headerShown: false}}
                 />
                 <Stack.Screen
                     name={SCREEN_NAME.HOME_SCREEN}
                     component={AppNavigator}
-                    options={{ headerShown: false }}
+                    options={{headerShown: false}}
                 />
                 <Stack.Screen
                     name={SCREEN_NAME.SEARCH_PRODUCT_SCREEN}
                     component={SearchProductScreen}
-                    options={{ headerShown: false }}
+                    options={{headerShown: false}}
                 />
                 <Stack.Screen
                     name={SCREEN_NAME.PROCESS_SCREEN}
                     component={ProcessScreen}
-                    options={{ headerShown: false }}
+                    options={{headerShown: false}}
                 />
                 <Stack.Screen
                     name={SCREEN_NAME.ADD_PROCESS_SCREEN}
                     component={AddProcessScreen}
-                    options={{ headerShown: false }}
+                    options={{headerShown: false}}
                 />
                 <Stack.Screen
                     name={SCREEN_NAME.MONITOR_SCREEN}
                     component={MonitorScreen}
-                    options={{ headerShown: false }}
+                    options={{headerShown: false}}
                 />
                 <Stack.Screen
                     name={SCREEN_NAME.PRODUCT_TO_ROUTINE}
                     component={AddProductToRoutine}
-                    options={{ headerShown: false }}
+                    options={{headerShown: false}}
                 />
                 <Stack.Screen
                     name={SCREEN_NAME.PRODUCT_SCREEN}
                     component={ProductScreen}
-                    options={{ headerShown: false }}
+                    options={{headerShown: false}}
                 />
                 <Stack.Screen
                     name={SCREEN_NAME.PRODUCT_INFORMATION_SCREEN}
                     component={ProductInformationScreen}
-                    options={{ headerShown: false }}
+                    options={{headerShown: false}}
                 />
 
                 <Stack.Screen
                     name={SCREEN_NAME.PROFILE_SCREEN}
                     component={ProfileScreen}
-                    options={{ headerShown: false }}
-                />
+                    options={{headerShown: false}}
+                /> 
             </Stack.Navigator>
         </NavigationContainer>
     );
