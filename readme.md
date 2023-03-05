@@ -1,7 +1,7 @@
 #    My Magenta v1.0
 ## Requirements:
-install the react native development environment on your system following the react native documents: <https://reactnative.dev/docs/environment-setup>
-node.js 16.x, npm, android debugging bridge, android device or emulator
+- install the react native development environment on your system following the react native documents: <https://reactnative.dev/docs/environment-setup>
+- others: node.js 16.x, npm, android debugging bridge, android device or emulator
 ## How to run the app in debug mode
 ### From the command line interface:
 1. clone the repo:
