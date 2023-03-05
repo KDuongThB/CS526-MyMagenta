@@ -15,6 +15,7 @@ import {useState} from 'react';
 import CustomButtonAdd from '../../components/CustomButtonAdd';
 import {ICCalendar, ICChevronDown} from '../../assets/icons';
 import {Calendar} from 'react-native-calendars';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const stepInfoMorning = [
     {

@@ -13,29 +13,8 @@ import OnBack from '../../components/OnBack';
 import {ICSearch, ICChevronRight} from '../../assets/icons';
 import COLORS from '../../assets/constants/colors';
 import SCREEN_NAME from '../../assets/constants/screens';
-
-const productData = [
-    {
-        id: 0,
-        name: 'La Roche-Posay Effaclar Purifying Foaming Gel For Oily Sensitive Skin',
-    },
-    {
-        id: 1,
-        name: 'La Roche-Posay Effaclar Duo+',
-    },
-    {
-        id: 2,
-        name: 'La Roche-Posay Anthelios XL Dry Touch Gel-Cream SPF 50+ UVB & UVA',
-    },
-    {
-        id: 3,
-        name: 'La Roche-Posay Hyalu B5 Serum',
-    },
-    {
-        id: 4,
-        name: 'La Roche-Posay Effaclar Pure Vitamin C10 Serum ',
-    },
-];
+import {productData} from '../../data/productItem';
+import {debounce} from 'lodash';
 
 const SearchProductScreen = props => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -43,19 +22,21 @@ const SearchProductScreen = props => {
     const {navigation} = props;
 
     useEffect(() => {
-        const intervalID = setInterval(() => {
+        const debouncedSearch = debounce(() => {
             if (searchTerm === '') {
                 setData(productData);
             } else {
                 const temp = productData.filter(pData =>
-                    pData.name.toLowerCase().includes(searchTerm.toLowerCase()),
+                    pData.productName
+                        .toLowerCase()
+                        .includes(searchTerm.toLowerCase()),
                 );
                 setData(temp);
             }
         }, 100);
-
-        return () => clearInterval(intervalID);
-    }, [searchTerm]);
+        debouncedSearch();
+        return () => debouncedSearch.cancel();
+    }, [searchTerm,productData]);
 
     return (
         <React.Fragment>
@@ -107,21 +88,23 @@ const SearchProductScreen = props => {
                                 <TouchableOpacity
                                     key={index}
                                     style={styles.showProductData}
-                                    onPress={() =>
-                                        navigation.navigate(
-                                            SCREEN_NAME.PRODUCT_INFORMATION_SCREEN,
-                                            {
-                                                itemId: pData.id,
-                                            },
-                                        )
+                                    onPress={
+                                        () =>
+                                            navigation.navigate(
+                                                SCREEN_NAME.PRODUCT_INFORMATION_SCREEN,
+                                                {
+                                                    itemId: pData._id,
+                                                },
+                                            )
+                                        // {console.log(pData.id[0])}
                                     }>
                                     <View style={styles.body}>
                                         <Image
                                             style={styles.body.logo}
-                                            source={require('../../assets/images/Product/La-Roche-Posay-Hyalu-B5-Serum.png')}
+                                            source={pData.imageID}
                                         />
                                         <Text style={styles.body.name}>
-                                            {pData.name}
+                                            {pData.productName}
                                         </Text>
                                     </View>
                                 </TouchableOpacity>

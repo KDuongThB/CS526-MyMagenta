@@ -18,7 +18,9 @@ const LoginForm = props => {
     const [account, setAccount] = useState('');
     const [password, setPassword] = useState('');
     const [passwordSecurity, setPasswordSecurity] = useState(true);
+
     const {navigation} = props;
+
     return (
         <React.Fragment>
             <View style={styles.body}>

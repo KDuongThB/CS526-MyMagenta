@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
     View,
     Text,
@@ -12,98 +12,41 @@ import OnBack from '../../components/OnBack';
 import {ICSearch, ICChevronRight} from '../../assets/icons';
 import COLORS from '../../assets/constants/colors';
 import {normalize, scaleX, scaleY} from '../../helperFunction.js';
-
-const productData = [
-    {
-        id: 0,
-        name: 'La Roche-Posay Effaclar Purifying Foaming Gel For Oily Sensitive Skin',
-        age: 'Trên 18 tuổi',
-        skin: 'Mọi loại da',
-        materials: 'Hyaluronic Acid, Vitamin B5, Madecassoside',
-        uses: [
-            'Cấp ẩm chuyên sâu, giúp cải thiện nếp nhăn và vẻ rạng rở của da.',
-            'Làm dịu, phục hồi, kích thích sự tái tạo và sức đề kháng của làn da.',
-        ],
-        usage: [
-            'Thoa lên vùng da mặt vào mỗi sáng và/hoặc tối sau bước làm sạch. Không thoa lên vết thương hở',
-            'Để mạng lại hiệu quả tốt nhất, nên sử dụng kem dưỡng để khóa ẩm sau cùng.',
-        ],
-        use_limit: 'Dùng mỗi ngày (sáng và tối). Tối đa 2 lần trong ngày.',
-        step: 'Serum',
-    },
-    {
-        id: 1,
-        name: 'La Roche-Posay Effaclar Duo+',
-        age: 'Trên 18 tuổi',
-        skin: 'Mọi loại da',
-        materials: 'Hyaluronic Acid, Vitamin B5, Madecassoside',
-        uses: [
-            'Cấp ẩm chuyên sâu, giúp cải thiện nếp nhăn và vẻ rạng rở của da.',
-            'Làm dịu, phục hồi, kích thích sự tái tạo và sức đề kháng của làn da.',
-        ],
-        usage: [
-            'Thoa lên vùng da mặt vào mỗi sáng và/hoặc tối sau bước làm sạch. Không thoa lên vết thương hở',
-            'Để mạng lại hiệu quả tốt nhất, nên sử dụng kem dưỡng để khóa ẩm sau cùng.',
-        ],
-        use_limit: 'Dùng mỗi ngày (sáng và tối). Tối đa 2 lần trong ngày.',
-        step: 'Serum',
-    },
-    {
-        id: 2,
-        name: 'La Roche-Posay Anthelios XL Dry Touch Gel-Cream SPF 50+ UVB & UVA',
-        age: 'Trên 18 tuổi',
-        skin: 'Mọi loại da',
-        materials: 'Hyaluronic Acid, Vitamin B5, Madecassoside',
-        uses: [
-            'Cấp ẩm chuyên sâu, giúp cải thiện nếp nhăn và vẻ rạng rở của da.',
-            'Làm dịu, phục hồi, kích thích sự tái tạo và sức đề kháng của làn da.',
-        ],
-        usage: [
-            'Thoa lên vùng da mặt vào mỗi sáng và/hoặc tối sau bước làm sạch. Không thoa lên vết thương hở',
-            'Để mạng lại hiệu quả tốt nhất, nên sử dụng kem dưỡng để khóa ẩm sau cùng.',
-        ],
-        use_limit: 'Dùng mỗi ngày (sáng và tối). Tối đa 2 lần trong ngày.',
-        step: 'Serum',
-    },
-    {
-        id: 3,
-        name: 'La Roche-Posay Hyalu B5 Serum',
-        age: 'Trên 18 tuổi',
-        skin: 'Mọi loại da',
-        materials: 'Hyaluronic Acid, Vitamin B5, Madecassoside',
-        uses: [
-            'Cấp ẩm chuyên sâu, giúp cải thiện nếp nhăn và vẻ rạng rở của da.',
-            'Làm dịu, phục hồi, kích thích sự tái tạo và sức đề kháng của làn da.',
-        ],
-        usage: [
-            'Thoa lên vùng da mặt vào mỗi sáng và/hoặc tối sau bước làm sạch. Không thoa lên vết thương hở',
-            'Để mạng lại hiệu quả tốt nhất, nên sử dụng kem dưỡng để khóa ẩm sau cùng.',
-        ],
-        use_limit: 'Dùng mỗi ngày (sáng và tối). Tối đa 2 lần trong ngày.',
-        step: 'Serum',
-    },
-    {
-        id: 4,
-        name: 'La Roche-Posay Effaclar Pure Vitamin C10 Serum ',
-        age: 'Trên 18 tuổi',
-        skin: 'Mọi loại da',
-        materials: 'Hyaluronic Acid, Vitamin B5, Madecassoside',
-        uses: [
-            'Cấp ẩm chuyên sâu, giúp cải thiện nếp nhăn và vẻ rạng rở của da.',
-            'Làm dịu, phục hồi, kích thích sự tái tạo và sức đề kháng của làn da.',
-        ],
-        usage: [
-            'Thoa lên vùng da mặt vào mỗi sáng và/hoặc tối sau bước làm sạch. Không thoa lên vết thương hở',
-            'Để mạng lại hiệu quả tốt nhất, nên sử dụng kem dưỡng để khóa ẩm sau cùng.',
-        ],
-        use_limit: 'Dùng mỗi ngày (sáng và tối). Tối đa 2 lần trong ngày.',
-        step: 'Serum',
-    },
-];
+import {productData} from '../../data/productItem';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import SCREEN_NAME from '../../assets/constants/screens';
 
 const SearchProductScreen = ({route, navigation}) => {
     const {itemId} = route.params;
-    const data = productData.filter(x => x.id === itemId)[0];
+    console.log(itemId);
+    const data = productData.filter(x => x._id === itemId)[0];
+    console.log(data.productName);
+    const updateData = async (newData) => {
+        try {
+          await AsyncStorage.setItem('userProduct', JSON.stringify(newData));
+          console.log('Data updated successfully');
+        } catch (e) {
+          console.log('Failed to update data: ', e);
+          alert('Failed to update data');
+        }
+      };
+    const saveData = async () => {
+        try {
+            if (!data) {
+                console.log('No data to save');
+                return;
+            }
+            updateData(data);
+            const dataCHeck = await AsyncStorage.getItem('userProduct');
+            console.log(dataCHeck);
+            console.log('Data saved successfully');
+            alert('Data saved successfully');
+            navigation.navigate(SCREEN_NAME.PRODUCT_SCREEN)
+        } catch (e) {
+            console.log('Failed to save data: ', e);
+            alert('Failed to save data');
+        }
+    };
     return (
         <React.Fragment>
             <View style={styles.container}>
@@ -120,12 +63,11 @@ const SearchProductScreen = ({route, navigation}) => {
                     </View>
                 </View>
                 <View style={styles.product}>
-                    <Image
-                        style={styles.product.logo}
-                        source={require('../../assets/images/Product/La-Roche-Posay-Hyalu-B5-Serum.png')}
-                    />
-                    <Text style={styles.product.name}>{data.name}</Text>
-                    <TouchableOpacity style={styles.product.button}>
+                    <Image style={styles.product.logo} source={data.imageID} />
+                    <Text style={styles.product.name}>{data.productName}</Text>
+                    <TouchableOpacity
+                        style={styles.product.button}
+                        onPress={saveData}>
                         <Text style={styles.product.button.text}>
                             Thêm vào kho
                         </Text>
@@ -161,7 +103,7 @@ const SearchProductScreen = ({route, navigation}) => {
                                     marginTop: scaleY(10),
                                 })
                             }>
-                            {data.materials}
+                            {data.chemicals}
                         </Text>
                     </View>
                     <View style={styles.productInfo.detail}>
@@ -187,7 +129,7 @@ const SearchProductScreen = ({route, navigation}) => {
                             Cách dùng
                         </Text>
                         <View>
-                            {data.usage.map((dataUses, index) => {
+                            {data.uses.map((dataUses, index) => {
                                 return (
                                     <Text
                                         key={index}

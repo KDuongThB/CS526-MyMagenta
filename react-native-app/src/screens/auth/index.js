@@ -9,9 +9,23 @@ import LoginForm from '../../components/LoginForm';
 import RegisterForm from '../../components/RegisterForm';
 import {normalize} from '../../helperFunction';
 import SCREEN_NAME from '../../assets/constants/screens';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 const AuthenticateScreen = props => {
+    const createData = async () => {
+        try {
+            await AsyncStorage.setItem("userProduct", JSON.stringify([]));
+            const dataCHeck = await AsyncStorage.getItem("userProduct");
+            console.log(dataCHeck);
+            console.log('Data created successfully');
+        } catch (e) {
+            console.log('Failed to create data: ', e);
+        }
+    };
+
     const onNavigateToHome = () => {
+        createData();
         props.navigation.navigate(SCREEN_NAME.HOME_SCREEN);
     };
     const [auth, setAuth] = useState(0);

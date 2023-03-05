@@ -155,6 +155,11 @@ const RootNavigator = props => {
                     options={{headerShown: false}}
                 />
                 <Stack.Screen
+                    name={SCREEN_NAME.PRODUCT_SCREEN}
+                    component={ProductScreen}
+                    options={{headerShown: false}}
+                />
+                <Stack.Screen
                     name={SCREEN_NAME.SEARCH_PRODUCT_SCREEN}
                     component={SearchProductScreen}
                     options={{headerShown: false}}
@@ -179,22 +184,21 @@ const RootNavigator = props => {
                     component={AddProductToRoutine}
                     options={{headerShown: false}}
                 />
-                <Stack.Screen
+                {/* <Stack.Screen
                     name={SCREEN_NAME.PRODUCT_SCREEN}
                     component={ProductScreen}
                     options={{headerShown: false}}
-                />
+                /> */}
                 <Stack.Screen
                     name={SCREEN_NAME.PRODUCT_INFORMATION_SCREEN}
                     component={ProductInformationScreen}
                     options={{headerShown: false}}
                 />
-
                 <Stack.Screen
                     name={SCREEN_NAME.PROFILE_SCREEN}
                     component={ProfileScreen}
                     options={{headerShown: false}}
-                /> 
+                />
             </Stack.Navigator>
         </NavigationContainer>
     );
